@@ -1,0 +1,16 @@
+{
+    "name": "myleshyson/laravel-quickbooks",
+    "description": "A nice wrapper around the consolibyte/quickbooks-php package.",
+    "require": {
+        "consolibyte/quickbooks": "master"
+    },
+    "repositories": [{
+        "type": "vcs",
+        "url": "https://github.com/myleshyson/laravel-quickbooks.git"
+    }],
+    "license": "MIT",
+    "authors": [{
+        "name": "Myles Hyson",
+        "email": "mylesshyson@gmail.com"
+    }]
+}
