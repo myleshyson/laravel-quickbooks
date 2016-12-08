@@ -18,7 +18,7 @@ This package turns that into this...
 
 ```php
 Customer::create([
-  'GivenName' => 'Billy,
+  'GivenName' => 'Billy',
   'MiddleName' => 'J',
   'FamilyName' => 'Joe'
 ]);
