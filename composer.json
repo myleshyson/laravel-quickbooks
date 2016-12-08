@@ -1,7 +1,6 @@
 {
     "name": "myleshyson/laravel-quickbooks",
     "description": "A nice wrapper around the consolibyte/quickbooks-php package.",
-    "minimum-stability": "dev",
     "require": {
         "consolibyte/quickbooks": "master"
     },
