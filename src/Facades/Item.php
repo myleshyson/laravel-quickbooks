@@ -1,6 +1,6 @@
 <?php
 
-namespace Myleshy\Quickbooks\Facades;
+namespace Myleshyson\LaravelQuickBooks\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

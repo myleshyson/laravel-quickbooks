@@ -14,27 +14,27 @@ class QuickBooksServiceProvider extends ServiceProvider
     public function register()
     {
         include __DIR__.'/routes.php';
-        $this->app->make('Myleshy\Quickbooks\QuickbooksController');
-        $this->app->bind('account', 'Myleshy\Quickbooks\Services\Accounting\Account');
-        $this->app->bind('quickbooks', 'Myleshy\Quickbooks\Accounting\Quickbooks');
-        $this->app->bind('bill', 'Myleshy\Quickbooks\Services\Accounting\Bill');
-        $this->app->bind('billpayment', 'Myleshy\Quickbooks\Services\Accounting\BillPayment');
-        $this->app->bind('creditmemo', 'Myleshy\Quickbooks\Services\Accounting\CreditMemo');
-        $this->app->bind('estimate', 'Myleshy\Quickbooks\Services\Accounting\Estimate');
-        $this->app->bind('item', 'Myleshy\Quickbooks\Services\Accounting\Item');
-        $this->app->bind('invoice', 'Myleshy\Quickbooks\Services\Accounting\Invoice');
-        $this->app->bind('journal_entry', 'Myleshy\Quickbooks\Services\Accounting\JournalEntry');
-        $this->app->bind('payment', 'Myleshy\Quickbooks\Services\Accounting\Payment');
-        $this->app->bind('purchase', 'Myleshy\Quickbooks\Services\Accounting\Purchase');
-        $this->app->bind('purchase_order', 'Myleshy\Quickbooks\Services\Accounting\PurchaseOrder');
-        $this->app->bind('refund_receipt', 'Myleshy\Quickbooks\Services\Accounting\RefundReceipt');
-        $this->app->bind('sales_receipt', 'Myleshy\Quickbooks\Services\Accounting\SalesReceipt');
-        $this->app->bind('time_activity', 'Myleshy\Quickbooks\Services\Accounting\TimeActivity');
-        $this->app->bind('vendor_credity', 'Myleshy\Quickbooks\Services\Accounting\VendorCredit');
-        $this->app->bind('payment_method', 'Myleshy\Quickbooks\Services\Accounting\PaymentMethod');
-        $this->app->bind('tax_code', 'Myleshy\Quickbooks\Services\Accounting\TaxCode');
-        $this->app->bind('tax_rate', 'Myleshy\Quickbooks\Services\Accounting\TaxRate');
-        $this->app->bind('term', 'Myleshy\Quickbooks\Services\Accounting\Term');
-        $this->app->bind('vendor', 'Myleshy\Quickbooks\Services\Accounting\Vendor');
+        $this->app->make('Myleshyson\LaravelQuickBooks\QuickbooksController');
+        $this->app->bind('connection', 'Myleshyson\LaravelQuickBooks\Services\Connection');
+        $this->app->bind('account', 'Myleshyson\LaravelQuickBooks\Services\Accounting\Account');
+        $this->app->bind('bill', 'Myleshyson\LaravelQuickBooks\Services\Accounting\Bill');
+        $this->app->bind('billpayment', 'Myleshyson\LaravelQuickBooks\Services\Accounting\BillPayment');
+        $this->app->bind('creditmemo', 'Myleshyson\LaravelQuickBooks\Services\Accounting\CreditMemo');
+        $this->app->bind('estimate', 'Myleshyson\LaravelQuickBooks\Services\Accounting\Estimate');
+        $this->app->bind('item', 'Myleshyson\LaravelQuickBooks\Services\Accounting\Item');
+        $this->app->bind('invoice', 'Myleshyson\LaravelQuickBooks\Services\Accounting\Invoice');
+        $this->app->bind('journal_entry', 'Myleshyson\LaravelQuickBooks\Services\Accounting\JournalEntry');
+        $this->app->bind('payment', 'Myleshyson\LaravelQuickBooks\Services\Accounting\Payment');
+        $this->app->bind('purchase', 'Myleshyson\LaravelQuickBooks\Services\Accounting\Purchase');
+        $this->app->bind('purchase_order', 'Myleshyson\LaravelQuickBooks\Services\Accounting\PurchaseOrder');
+        $this->app->bind('refund_receipt', 'Myleshyson\LaravelQuickBooks\Services\Accounting\RefundReceipt');
+        $this->app->bind('sales_receipt', 'Myleshyson\LaravelQuickBooks\Services\Accounting\SalesReceipt');
+        $this->app->bind('time_activity', 'Myleshyson\LaravelQuickBooks\Services\Accounting\TimeActivity');
+        $this->app->bind('vendor_credity', 'Myleshyson\LaravelQuickBooks\Services\Accounting\VendorCredit');
+        $this->app->bind('payment_method', 'Myleshyson\LaravelQuickBooks\Services\Accounting\PaymentMethod');
+        $this->app->bind('tax_code', 'Myleshyson\LaravelQuickBooks\Services\Accounting\TaxCode');
+        $this->app->bind('tax_rate', 'Myleshyson\LaravelQuickBooks\Services\Accounting\TaxRate');
+        $this->app->bind('term', 'Myleshyson\LaravelQuickBooks\Services\Accounting\Term');
+        $this->app->bind('vendor', 'Myleshyson\LaravelQuickBooks\Services\Accounting\Vendor');
     }
 }

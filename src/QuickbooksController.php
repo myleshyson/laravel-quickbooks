@@ -1,6 +1,6 @@
 <?php
 
-namespace Myleshy\Quickbooks;
+namespace Myleshyson\LaravelQuickBooks;
 
 use App\Http\Controllers\Controller;
 use Myleshy\Quickbooks\Facades\Bill;

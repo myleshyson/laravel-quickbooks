@@ -1,6 +1,6 @@
 <?php
 
-namespace Myleshy\Quickbooks\Services\Accounting;
+namespace Myleshyson\LaravelQuickBooks\Accounting;
 
 use Myleshy\Quickbooks\Quickbooks;
 

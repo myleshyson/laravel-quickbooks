@@ -1,6 +1,6 @@
 <?php
 
-namespace Myleshy\Quickbooks\Services;
+namespace Myleshyson\LaravelQuickBooks\Services;
 
 use Myleshy\Quickbooks\Quickbooks;
 

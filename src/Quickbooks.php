@@ -1,6 +1,6 @@
 <?php
 
-namespace Myleshy\Quickbooks;
+namespace Myleshyson\LaravelQuickBooks;
 
 class Quickbooks extends \QuickBooks_IPP_Service
 {
