@@ -1,6 +1,11 @@
 {
     "name": "myleshyson/laravel-quickbooks",
     "description": "A nice wrapper around the consolibyte/quickbooks-php package.",
+    "license": "MIT",
+    "authors": [{
+        "name": "Myles Hyson",
+        "email": "mylesshyson@gmail.com"
+    }],
     "require": {
         "consolibyte/quickbooks": "master"
     },
@@ -8,9 +13,9 @@
         "type": "vcs",
         "url": "https://github.com/myleshyson/laravel-quickbooks.git"
     }],
-    "license": "MIT",
-    "authors": [{
-        "name": "Myles Hyson",
-        "email": "mylesshyson@gmail.com"
-    }]
+    "autoload": {
+        "psr-4": {
+            "Myleshyson\\LaravelQuickBooks\\": "src/"
+        }
+    }
 }
