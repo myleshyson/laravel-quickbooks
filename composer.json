@@ -2,6 +2,7 @@
     "name": "myleshyson/laravel-quickbooks",
     "description": "A nice wrapper around the consolibyte/quickbooks-php package.",
     "license": "MIT",
+    "minimum-stability": "dev",
     "authors": [{
         "name": "Myles Hyson",
         "email": "mylesshyson@gmail.com"
