@@ -1,5 +1,5 @@
 <?php
-namespace Myleshy\Quickbooks;
+namespace Myleshyson\LaravelQuickBooks;
 
 use Illuminate\Support\ServiceProvider;
 

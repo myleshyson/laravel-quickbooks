@@ -7,7 +7,7 @@
         "email": "mylesshyson@gmail.com"
     }],
     "require": {
-        "consolibyte/quickbooks": "master"
+        "consolibyte/quickbooks": "dev-master"
     },
     "repositories": [{
         "type": "vcs",
