@@ -5,7 +5,7 @@
     "minimum-stability": "dev",
     "authors": [{
         "name": "Myles Hyson",
-        "email": "mylesshyson@gmail.com"
+        "email": "me@myleshyson.com"
     }],
     "require": {
         "consolibyte/quickbooks": "dev-master"
