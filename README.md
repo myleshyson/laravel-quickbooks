@@ -1,25 +1,115 @@
 # laravel-quickbooks
 ## A nice wrapper around the Quickbooks Online SDK. 
 
-This package is still in development. It's meant to give a nicer interaction with QuickBooks. For example. If you wanted to create a new customer, you would originally have to do something like this..
+###Installation
+If you haven't already composer the quickbooks php sdk. If you're using php 7+ then you'll need to require the dev-master version.
+```
+composer require consolibyte/quickbooks-php
+```
+Then require this package.
+```
+composer require myleshyson/laravel-quickbooks
+```
+Add this line to you config/app.php.
 
 ```php
-$Customer = new QuickBooks_IPP_Object_Customer();
-$CustomerService = new Quickbooks_IPP_Service_Customer();
-
-$Customer->setGivenName('Billy');
-$Customer->setMiddleName('J');
-$Customer->setFamilyName('Joe');
-
-$CustomerService->add($Context, $Realm, $Customer);
+Myleshyson\LaravelQuickBooks\QuickBooksServiceProvider::class,
 ```
 
-This package turns that into this...
+Finally on the command line publish the config file for the package like so.
+
+```
+php artisan vendor:publish --tag=quickbooks
+```
+
+These are the variables you need to set in your .env.
+
+```
+QB_TOKEN=
+QB_OAUTH_CONSUMER_KEY=
+QB_OAUTH_CONSUMER_SECRET=
+QB_OAUTH_URL=
+QB_SUCCESS_URL=
+QB_SANDBOX=true
+
+//These two you don't need to change unless you need to for some reason.
+QB_USERNAME=DO_NOT_CHANGE_ME
+QB_TENANT=12345 
+```
+After that you should be set to go!
+
+###Usage
+This package was made for working with the QuickBooks Accounting API in mind. You can look at all of the accounting resources here under 'Transaction' and 'Name list' resources. [QuickBooks Accounting API](https://developer.intuit.com/docs/api/accounting)
+
+There are a few resources that aren't supported by the QuickBooks SDK and those are listed here:
+* CompanyCurrency
+* Budget
+* JournalCode
+* TaxAgency
+* TaxService
+* Deposit
+* Transfer
+
+To connect to quickbooks.
 
 ```php
-Customer::create([
-  'GivenName' => 'Billy',
-  'MiddleName' => 'J',
-  'FamilyName' => 'Joe'
-]);
+// web.php
+use Myleshyson\LaravelQuickBooks\Facades\Customer;
+
+Route::get('/', function () {
+  Connection::start();
+});
 ```
+
+If you want to disconnect from quickbooks then you can do it like so.
+```php
+// web.php
+use Myleshyson\LaravelQuickBooks\Facades\Customer;
+
+Route::get('/', function () {
+  Connection::stop();
+});
+```
+
+
+I used the same naming conventions as the QuickBooks API to make things easier. In order to create a resource like Customer for example, you would use it like this...
+
+```php
+// web.php
+
+use Myleshyson\LaravelQuickBooks\Facades\Customer;
+
+Route::get('/', function () {
+    Customer::create([
+        'Taxable' => false,
+        'BillAddr' => [
+            'Line1' => '123 Test Street',
+            'City' => 'Dallas',
+            'State' => 'Texas',
+            'CountrySubDivisionCode' => 'TX',
+            'PostalCode' => '12345'
+        ],
+        'GivenName' => 'Bill',
+        'FamilyName' => 'Something',
+        'FullyQualifiedName' => "Bill's Surf Shop"
+    ]);
+});
+```
+*Make sure to import the Facade class* 
+
+Every resource that's available has four methods:
+
+```php
+Customer::create(array $data);
+
+Customer::update($id, array $data);
+
+Customer::delete($id);
+
+Customer::find($id);
+
+Customer::get(); //gets all customers associated with your account.
+```
+
+
+
