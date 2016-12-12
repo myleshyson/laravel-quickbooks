@@ -5,7 +5,7 @@ use Illuminate\Support\ServiceProvider;
 
 class QuickBooksServiceProvider extends ServiceProvider
 {
-    
+
     public function boot()
     {
         $this->publishes([__DIR__.'/config/QuickBooks.php' => config_path('quickbooks.php')], 'quickbooks');
@@ -41,8 +41,5 @@ class QuickBooksServiceProvider extends ServiceProvider
         $this->app->bind('time_activity', 'Myleshyson\LaravelQuickBooks\Services\Accounting\TimeActivity');
         $this->app->bind('vendor', 'Myleshyson\LaravelQuickBooks\Services\Accounting\Vendor');
         $this->app->bind('vendor_credit', 'Myleshyson\LaravelQuickBooks\Services\Accounting\VendorCredit');
-
-        $this->app->bind('credit_card', 'Myleshyson\LaravelQuickBooks\Services\Payment\CreditCard');
-        $this->app->bind('bank_account', 'Myleshyson\LaravelQuickBooks\Services\Payment\BankAccount');
     }
 }
