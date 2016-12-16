@@ -97,6 +97,26 @@ Route::get('/', function () {
 ```
 *Make sure to import the Facade class* 
 
+Most resources in the quickbooks api have lines that you can add to the object your building. For example an Invoice has line items and foreach line in the Invoice there could be sub line items and so forth. There are multiple lines types in quickbooks that are defined as the DetailType. For this package, set the DetailType as the key to the *Lines* multi-dimensional array and within it you can set both the Line data and the DetailType data. In order to create lines for the invoice it would look something like this.
+
+```php
+Invoice::create([
+  'CustomerRef' => 1,
+  'Lines' => [
+    'SalesItemLineDetail' => [
+      'ItemRef' => 1,
+      'Amount' => 20,
+      'MarkupInfo' => [
+        'PercentBased' => true
+      ]
+    ],
+    'GroupLineDetail' => [
+      '...etc'
+    ]
+  ]
+])
+```
+
 Every resource that's available has four methods:
 
 ```php
