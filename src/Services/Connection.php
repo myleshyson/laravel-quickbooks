@@ -2,7 +2,7 @@
 
 namespace Myleshyson\LaravelQuickBooks\Services;
 
-use Myleshy\Quickbooks\Quickbooks;
+use Myleshyson\LaravelQuickBooks\Quickbooks;
 
 class Connection extends Quickbooks
 {
