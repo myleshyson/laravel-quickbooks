@@ -33,11 +33,13 @@ class Item extends Quickbooks
 
     public function find($id)
     {
+        $this->service = new \QuickBooks_IPP_Service_Item();
         return $this->service->query($this->context, $this->realm, "SELECT * FROM Item WHERE Id = '$id' ")[0];
     }
 
-    public function get($id)
+    public function get()
     {
-        return $this->service->query($this->context, $this->realm, "SELECT * FROM Item")[0];
+        $this->service = new \QuickBooks_IPP_Service_Item();
+        return $this->service->query($this->context, $this->realm, "SELECT * FROM Item");
     }
 }

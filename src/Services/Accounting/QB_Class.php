@@ -34,11 +34,13 @@ class QB_Class extends Quickbooks
 
     public function find($id)
     {
+        $this->service = new \QuickBooks_IPP_Service_Class();
         return $this->service->query($this->context, $this->realm, "SELECT * FROM Class WHERE Id = '$id' ")[0];
     }
 
-    public function get($id)
+    public function get()
     {
-        return $this->service->query($this->context, $this->realm, "SELECT * FROM Class")[0];
+        $this->service = new \QuickBooks_IPP_Service_Class();
+        return $this->service->query($this->context, $this->realm, "SELECT * FROM Class");
     }
 }

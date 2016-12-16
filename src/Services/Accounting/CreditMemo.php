@@ -34,11 +34,13 @@ class CreditMemo extends Quickbooks
 
     public function find($id)
     {
+        $this->service = new \QuickBooks_IPP_Service_CreditMemo();
         return $this->service->query($this->context, $this->realm, "SELECT * FROM CreditMemo WHERE Id = '$id' ")[0];
     }
 
-    public function get($id)
+    public function get()
     {
-        return $this->service->query($this->context, $this->realm, "SELECT * FROM CreditMemo")[0];
+        $this->service = new \QuickBooks_IPP_Service_CreditMemo();
+        return $this->service->query($this->context, $this->realm, "SELECT * FROM CreditMemo");
     }
 }
