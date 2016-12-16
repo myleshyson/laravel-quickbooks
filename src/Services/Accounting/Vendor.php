@@ -2,7 +2,7 @@
 
 namespace Myleshyson\LaravelQuickBooks\Accounting;
 
-use Myleshy\Quickbooks\Quickbooks;
+use Myleshyson\LaravelQuickBooks\Quickbooks;
 
 class Vendor extends Quickbooks
 {
@@ -12,7 +12,7 @@ class Vendor extends Quickbooks
         $this->resource = new \QuickBooks_IPP_Object_Vendor();
         $this->handleNameListData($data, $this->resource);
         $this->createLines($data['Lines'], $this->resource);
-           
+
         return $this->service->add($this->context, $this->realm, $this->resource);
     }
 

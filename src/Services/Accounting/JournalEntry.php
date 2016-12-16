@@ -2,7 +2,7 @@
 
 namespace Myleshyson\LaravelQuickBooks\Accounting;
 
-use Myleshy\Quickbooks\Quickbooks;
+use Myleshyson\LaravelQuickBooks\Quickbooks;
 
 class JournalEntry extends Quickbooks
 {
@@ -12,7 +12,7 @@ class JournalEntry extends Quickbooks
         $this->resource = new \QuickBooks_IPP_Object_JournalEntry();
         $this->handleTransactionData($data, $this->resource);
         $this->createLines($data['Lines'], $this->resource);
-           
+
         return $this->service->add($this->context, $this->realm, $this->resource);
     }
 

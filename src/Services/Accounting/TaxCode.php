@@ -2,7 +2,7 @@
 
 namespace Myleshyson\LaravelQuickBooks\Accounting;
 
-use Myleshy\Quickbooks\Quickbooks;
+use Myleshyson\LaravelQuickBooks\Quickbooks;
 
 class TaxCode extends Quickbooks
 {

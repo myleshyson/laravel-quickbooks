@@ -2,7 +2,7 @@
 
 namespace Myleshyson\LaravelQuickBooks\Accounting;
 
-use Myleshy\Quickbooks\Quickbooks;
+use Myleshyson\LaravelQuickBooks\Quickbooks;
 
 class CreditMemo extends Quickbooks
 {
@@ -12,7 +12,7 @@ class CreditMemo extends Quickbooks
         $this->resource = new \QuickBooks_IPP_Object_CreditMemo();
         $this->handleTransactionData($data, $this->CreditMemo);
         $this->createLines($data['Lines'], $this->CreditMemo);
-           
+
         return $this->service->add($this->context, $this->realm, $this->CreditMemo);
     }
 

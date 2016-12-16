@@ -2,7 +2,7 @@
 
 namespace Myleshyson\LaravelQuickBooks\Accounting;
 
-use Myleshy\Quickbooks\Quickbooks;
+use Myleshyson\LaravelQuickBooks\Quickbooks;
 
 class PurchaseOrder extends Quickbooks
 {
@@ -12,7 +12,7 @@ class PurchaseOrder extends Quickbooks
         $this->resource = new \QuickBooks_IPP_Object_PurchaseOrder();
         $this->handleTransactionData($data, $this->resource);
         $this->createLines($data['Lines'], $this->resource);
-           
+
         return $this->service->add($this->context, $this->realm, $this->resource);
     }
 

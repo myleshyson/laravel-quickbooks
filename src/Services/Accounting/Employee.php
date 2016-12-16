@@ -2,7 +2,7 @@
 
 namespace Myleshyson\LaravelQuickBooks\Accounting;
 
-use Myleshy\Quickbooks\Quickbooks;
+use Myleshyson\LaravelQuickBooks\Quickbooks;
 
 class Employee extends Quickbooks
 {
@@ -12,7 +12,7 @@ class Employee extends Quickbooks
         $this->resource = new \QuickBooks_IPP_Object_Employee();
         $this->handleNameListData($data, $this->resource);
         $this->createLines($data['Lines'], $this->resource);
-           
+
         return $this->service->add($this->context, $this->realm, $this->resource);
     }
 

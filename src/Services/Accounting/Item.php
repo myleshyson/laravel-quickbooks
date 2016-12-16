@@ -1,7 +1,7 @@
 <?php
 namespace Myleshyson\LaravelQuickBooks\Accounting;
 
-use Myleshy\Quickbooks\Quickbooks;
+use Myleshyson\LaravelQuickBooks\Quickbooks;
 
 class Item extends Quickbooks
 {
@@ -11,7 +11,7 @@ class Item extends Quickbooks
         $this->resource = new \QuickBooks_IPP_Object_Item();
         $this->handleNameListData($data, $this->resource);
         $this->createLines($data['Lines'], $this->resource);
-           
+
         return $this->service->add($this->context, $this->realm, $this->resource);
     }
 
