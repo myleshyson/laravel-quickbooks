@@ -4,7 +4,7 @@
 ###Installation
 If you haven't already composer the quickbooks php sdk. If you're using php 7+ then you'll need to require the dev-master version.
 ```
-composer require consolibyte/quickbooks-php
+composer require consolibyte/quickbooks
 ```
 Then require this package.
 ```
