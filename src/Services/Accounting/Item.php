@@ -12,7 +12,7 @@ class Item extends Quickbooks
         $this->handleNameListData($data, $this->resource);
         isset($data['Lines']) ? $this->createLines($data['Lines'], $this->resource) : '';
 
-        return $this->service->add($this->context, $this->realm, $this->resource);
+        return $this->service->add($this->context, $this->realm, $this->resource) ?: $this->service->lastError();
     }
 
     public function update($id, array $data)
@@ -22,7 +22,8 @@ class Item extends Quickbooks
 
         $this->handleNameListData($data, $this->resource);
         isset($data['Lines']) ? $this->createLines($data['Lines'], $this->resource) : '';
-        return $this->service->update($this->context, $this->realm, $id, $this->resource);
+
+        return $this->service->update($this->context, $this->realm, $id, $this->resource) ?: $this->service->lastError();
     }
 
     public function delete($id)

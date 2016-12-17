@@ -13,7 +13,7 @@ class CreditMemo extends Quickbooks
         $this->handleTransactionData($data, $this->CreditMemo);
         $this->createLines($data['Lines'], $this->CreditMemo);
 
-        return $this->service->add($this->context, $this->realm, $this->CreditMemo);
+        return $this->service->add($this->context, $this->realm, $this->resource) ?: $this->service->lastError();
     }
 
     public function update($id, array $data)
@@ -23,6 +23,7 @@ class CreditMemo extends Quickbooks
 
         $this->handleTransactionData($data, $this->resource);
         isset($data['Lines']) ? $this->createLines($data['Lines'], $this->resource) : '';
+
         return $this->service->update($this->context, $this->realm, $id, $this->resource) ?: $this->service->lastError();
     }
 

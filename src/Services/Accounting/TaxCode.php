@@ -9,12 +9,12 @@ class TaxCode extends Quickbooks
     public function find($id)
     {
         $this->service = new \QuickBooks_Ipp_Service_TaxCode();
-        return $this->service->query($this->context, $this->realm, "SELECT * FROM TaxCode WHERE Id = '$id' ")[0];
+        return $this->service->query($this->context, $this->realm, "SELECT * FROM TaxCode WHERE Id = '$id' ")[0] ?: $this->service->lastError();
     }
 
     public function get()
     {
         $this->service = new \QuickBooks_Ipp_Service_TaxCode();
-        return $this->service->query($this->context, $this->realm, "SELECT * FROM TaxCode");
+        return $this->service->query($this->context, $this->realm, "SELECT * FROM TaxCode") ?: $this->service->lastError();
     }
 }

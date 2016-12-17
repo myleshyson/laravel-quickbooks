@@ -13,7 +13,7 @@ class QB_Class extends Quickbooks
         $this->handleTransactionData($data, $this->resource);
         isset($data['Lines']) ? $this->createLines($data['Lines'], $this->resource) : '';
 
-        return $this->service->add($this->context, $this->realm, $this->resource);
+        return $this->service->add($this->context, $this->realm, $this->resource) ?: $this->service->lastError();
     }
 
     public function update($id, array $data)
@@ -23,7 +23,8 @@ class QB_Class extends Quickbooks
 
         $this->handleTransactionData($data, $this->resource);
         isset($data['Lines']) ? $this->createLines($data['Lines'], $this->resource) : '';
-        return parent::_update($this->context, $this->realm, \QuickBooks_IPP_IDS::RESOURCE_CLASS, $this->employee, $id);
+
+        return parent::_update($this->context, $this->realm, \QuickBooks_IPP_IDS::RESOURCE_CLASS, $this->resource, $id) ?: $this->service->lastError();
     }
 
     public function delete($id)
