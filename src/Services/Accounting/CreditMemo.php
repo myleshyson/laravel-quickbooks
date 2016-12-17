@@ -22,7 +22,7 @@ class CreditMemo extends Quickbooks
         $this->resource = $this->find($id);
 
         $this->handleTransactionData($data, $this->resource);
-        $this->createLines($data['Lines'], $this->resource);
+        $this->createLines(isset($data['Lines']), $this->resource);
         return $this->service->update($this->context, $this->realm, $id, $this->resource) ?: $this->service->lastError();
     }
 

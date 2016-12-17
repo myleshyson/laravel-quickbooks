@@ -11,7 +11,7 @@ class Invoice extends Quickbooks
         $this->service = new \QuickBooks_IPP_Service_Invoice();
         $this->resource = new \QuickBooks_IPP_Object_Invoice();
         $this->handleTransactionData($data, $this->resource);
-        $this->createLines($data['Lines'], $this->resource);
+        $this->createLines(isset($data['Lines']), $this->resource);
 
         return $this->service->add($this->context, $this->realm, $this->resource);
     }
@@ -22,7 +22,7 @@ class Invoice extends Quickbooks
         $this->resource = $this->find($id);
 
         $this->handleTransactionnData($data, $this->resource);
-        $this->createLines($data['Lines'], $this->resource);
+        $this->createLines(isset($data['Lines']), $this->resource);
         return $this->resource->update($this->context, $this->realm, $id, $this->resource);
     }
 

@@ -11,7 +11,7 @@ class Employee extends Quickbooks
         $this->service = new \QuickBooks_IPP_Service_Employee();
         $this->resource = new \QuickBooks_IPP_Object_Employee();
         $this->handleNameListData($data, $this->resource);
-        $this->createLines($data['Lines'], $this->resource);
+        $this->createLines(isset($data['Lines']), $this->resource);
 
         return $this->service->add($this->context, $this->realm, $this->resource);
     }
@@ -22,7 +22,7 @@ class Employee extends Quickbooks
         $this->resource = $this->find($id);
 
         $this->handleNameListData($data, $this->resource);
-        $this->createLines($data['Lines'], $this->resource);
+        $this->createLines(isset($data['Lines']), $this->resource);
         return parent::_update($this->context, $this->realm, \QuickBooks_IPP_IDS::RESOURCE_EMPLOYEE, $this->resource, $id);
     }
 

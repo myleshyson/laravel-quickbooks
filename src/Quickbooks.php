@@ -206,31 +206,31 @@ class Quickbooks extends \QuickBooks_IPP_Service
             $obj->setPrimaryPhone($PrimaryPhone);
         }
 
-        if ($data['AlternatePhone']) {
+        if (isset($data['AlternatePhone'])) {
             $AlternatePhone = new \QuickBooks_IPP_Object_AlternatePhone();
             $AlternatePhone->setFreeFormNumber($data['AlternatePhone']);
             $obj->setAlternatePhone($AlternatePhone);
         }
 
-        if ($data['Fax']) {
+        if (isset($data['Fax'])) {
             $Fax = new \QuickBooks_IPP_Object_Fax();
             $Fax->setFreeFormNumber($data['Fax']);
             $obj->setFax($Fax);
         }
 
-        if ($data['Mobile']) {
+        if (isset($data['Mobile'])) {
             $Mobile = new \QuickBooks_IPP_Object_Mobile();
             $Mobile->setFreeFormNumber($data['Mobile']);
             $obj->setMobile($Mobile);
         }
 
-        if ($data['PrimaryEmailAddr']) {
+        if (isset($data['PrimaryEmailAddr'])) {
             $PrimaryEmailAddr = new \QuickBooks_IPP_Object_PrimaryEmailAddr();
             $PrimaryEmailAddr->setAddress($data['PrimaryEmailAddr']);
             $obj->setPrimaryEmailAddr($PrimaryEmailAddr);
         }
 
-        if ($data['WebAddr']) {
+        if (isset($data['WebAddr'])) {
             $WebAddr = new \QuickBooks_IPP_Object_WebAddr();
             $WebAddr->setURI($data['WebAddr']);
             $obj->setWebAddr($WebAddr);
@@ -490,16 +490,17 @@ class Quickbooks extends \QuickBooks_IPP_Service
      */
     protected function createLines($data, $obj)
     {
-        foreach ($data as $key => $value) {
-            $line = new \QuickBooks_IPP_Object_Line();
-            isset($value['LineNumber']) ? $lnumber = $value['LineNumber'] - 1 : $lnumber = null;
+        if ($data) {
+            foreach ($data as $key => $value) {
+                $line = new \QuickBooks_IPP_Object_Line();
+                isset($value['LineNumber']) ? $lnumber = $value['LineNumber'] - 1 : $lnumber = null;
 
-            if ($key != 'DescriptionOnly') {
-                $accountType = '\\QuickBooks_IPP_Object_'.$key;
-                $account = new $accountType();
-            }
+                if ($key != 'DescriptionOnly') {
+                    $accountType = '\\QuickBooks_IPP_Object_'.$key;
+                    $account = new $accountType();
+                }
 
-            switch ($key) {
+                switch ($key) {
                 case 'SalesItemLineDetail':
                     $this->handleSalesItemLineDetail($account, $value, $lnumber, $obj);
                     break;
@@ -527,6 +528,7 @@ class Quickbooks extends \QuickBooks_IPP_Service
                 default:
                     null;
                     break;
+                }
             }
         }
     }
