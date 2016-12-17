@@ -34,7 +34,7 @@ class Quickbooks extends \QuickBooks_IPP_Service
      */
     protected $resource;
 
-    
+
     /**
      * Makes sure User is connected to QuickBooks. Needed for every method called to QuickBooks.
      */
@@ -62,7 +62,7 @@ class Quickbooks extends \QuickBooks_IPP_Service
                 $creds);
 
             if ($this->config['sandbox']) {
-                // Turn on sandbox mode/URLs 
+                // Turn on sandbox mode/URLs
                     $IPP->sandbox(true);
             }
 
@@ -75,7 +75,7 @@ class Quickbooks extends \QuickBooks_IPP_Service
     }
 
     /**
-     * Handles Data from Accounting NameList Resources 
+     * Handles Data from Accounting NameList Resources
      * @param  [array] $data [array of data passed from resource method.]
      * @param  [object] $obj  [The current resource handling the data.]
      */
@@ -116,7 +116,6 @@ class Quickbooks extends \QuickBooks_IPP_Service
         isset($data['EmployeeNumber']) ? $obj->setEmployeeNumber($data['EmployeeNumber']) : '';
         isset($data['ExpenseAccountRef']) ? $obj->setExpenseAccountRef($data['ExpenseAccountRef']) : '';
         isset($data['FamilyName']) ? $obj->setFamilyName($data['FamilyName']) : '';
-        isset($data['FullyQualifiedName']) ? $obj->setFullyQualifiedName($data['FullyQualifiedName']) : '';
         isset($data['FullyQualifiedName']) ? $obj->setFullyQualifiedName($data['FullyQualifiedName']) : '';
         isset($data['Gender']) ? $obj->setGender($data['Gender']) : '';
         isset($data['GivenName']) ? $obj->setGivenName($data['GivenName']) : '';
@@ -206,7 +205,7 @@ class Quickbooks extends \QuickBooks_IPP_Service
             $PrimaryPhone->setFreeFormNumber($data['PrimaryPhone']);
             $obj->setPrimaryPhone($PrimaryPhone);
         }
-        
+
         if ($data['AlternatePhone']) {
             $AlternatePhone = new \QuickBooks_IPP_Object_AlternatePhone();
             $AlternatePhone->setFreeFormNumber($data['AlternatePhone']);
@@ -297,7 +296,7 @@ class Quickbooks extends \QuickBooks_IPP_Service
 
 
     /**
-     * Handles Data from Accounting Transaction Resources 
+     * Handles Data from Accounting Transaction Resources
      * @param  [array] $data [array of data passed from resource method.]
      * @param  [object] $obj  [The current resource handling the data.]
      */
@@ -437,7 +436,7 @@ class Quickbooks extends \QuickBooks_IPP_Service
             isset($addrData['Long']) ? $RemitToAddr->setLong($addrData['Long']) : '';
             $obj->setRemitToAddr($RemitToAddr);
         }
-        
+
         if (isset($data['ShipAddr'])) {
             $ShipAddr = new \QuickBooks_IPP_Object_ShipAddr();
             $addrData = $data['ShipAddr'];
@@ -499,7 +498,7 @@ class Quickbooks extends \QuickBooks_IPP_Service
                 $accountType = '\\QuickBooks_IPP_Object_'.$key;
                 $account = new $accountType();
             }
-           
+
             switch ($key) {
                 case 'SalesItemLineDetail':
                     $this->handleSalesItemLineDetail($account, $value, $lnumber, $obj);
@@ -535,7 +534,7 @@ class Quickbooks extends \QuickBooks_IPP_Service
     protected function handleSalesItemLineDetail($account, $data, $lnumber = null, $obj)
     {
         isset($lnumber) ?  $line = $obj->getLine($lnumber) :  $line = new \QuickBooks_IPP_Object_Line();
-  
+
         $line->setAmount($data['Amount']);
         $line->setDetailType('SalesItemLineDetail');
         isset($data['LineNum']) ? $line->setLineNum($data['LineNum']) : '';
@@ -558,14 +557,14 @@ class Quickbooks extends \QuickBooks_IPP_Service
             $account->setMarkupInfo($markup);
         }
         $line->setSalesItemLineDetail($account);
-       
+
         isset($lnumber) ? '' : $obj->addLine($line);
     }
 
     protected function handleItemBasedExpenseLineDetail($account, $data, $lnumber = null, $obj)
     {
         isset($lnumber) ?  $line = $obj->getLine($lnumber) :  $line = new \QuickBooks_IPP_Object_Line();
-  
+
         $line->setAmount($data['Amount']);
         $line->setDetailType('ItemBasedExpenseLineDetail');
         isset($data['LineNum']) ? $line->setLineNum($data['LineNum']) : '';
@@ -591,14 +590,14 @@ class Quickbooks extends \QuickBooks_IPP_Service
             $account->setMarkupInfo($markup);
         }
         $line->setItemBasedExpensLineDetail($account);
-       
+
         isset($lnumber) ? '' : $obj->addLine($line);
     }
 
     protected function handleAccountBasedExpenseLineDetail($account, $data, $lnumber = null, $obj)
     {
         isset($lnumber) ?  $line = $obj->getLine($lnumber) :  $line = new \QuickBooks_IPP_Object_Line();
-  
+
         $line->setAmount($data['Amount']);
         $line->setDetailType('AccountBasedExpenseLineDetail');
         isset($data['LineNum']) ? $line->setLineNum($data['LineNum']) : '';
@@ -622,7 +621,7 @@ class Quickbooks extends \QuickBooks_IPP_Service
             $account->setMarkupInfo($markup);
         }
         $line->setAccountBasedExpensLineDetail($account);
-       
+
         isset($lnumber) ? '' : $obj->addLine($line);
     }
 
@@ -636,7 +635,7 @@ class Quickbooks extends \QuickBooks_IPP_Service
         isset($data['GroupItemRef']) ? $line->setGroupItemRef($data['GroupItemRef']) : '';
         isset($data['Quantity']) ? $line->setQuantity($data['Quantity']) : '';
         isset($data['Description']) ? $line->setDescription($data['Description']) : '';
-        
+
         if (isset($data['Lines'])) {
             $this->createLines($data['Lines'], $account);
         }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Myleshyson\LaravelQuickBooks\Accounting;
+namespace Myleshyson\LaravelQuickBooks\Services\Accounting;
 
 use Myleshyson\LaravelQuickBooks\Quickbooks;
 
