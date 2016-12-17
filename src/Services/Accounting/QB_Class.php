@@ -11,7 +11,7 @@ class QB_Class extends Quickbooks
         $this->service = new \QuickBooks_IPP_Service_Class();
         $this->resource = new \QuickBooks_IPP_Object_Class();
         $this->handleTransactionData($data, $this->resource);
-        $this->createLines(isset($data['Lines']), $this->resource);
+        isset($data['Lines']) ? $this->createLines($data['Lines'], $this->resource) : '';
 
         return $this->service->add($this->context, $this->realm, $this->resource);
     }
@@ -22,7 +22,7 @@ class QB_Class extends Quickbooks
         $this->resource = $this->find($id);
 
         $this->handleTransactionData($data, $this->resource);
-        $this->createLines(isset($data['Lines']), $this->resource);
+        isset($data['Lines']) ? $this->createLines($data['Lines'], $this->resource) : '';
         return parent::_update($this->context, $this->realm, \QuickBooks_IPP_IDS::RESOURCE_CLASS, $this->employee, $id);
     }
 

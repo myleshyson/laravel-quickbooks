@@ -11,7 +11,7 @@ class Purchase extends Quickbooks
         $this->service = new \QuickBooks_IPP_Service_Purchase();
         $this->resource = new \QuickBooks_IPP_Object_Purchase();
         $this->handleTransactionData($data, $this->resource);
-        $this->createLines(isset($data['Lines']), $this->resource);
+        isset($data['Lines']) ? $this->createLines($data['Lines'], $this->resource) : '';
 
         return $this->service->add($this->context, $this->realm, $this->resource);
     }
@@ -22,7 +22,7 @@ class Purchase extends Quickbooks
         $this->resource = $this->find($id);
 
         $this->handleTransactionData($data, $this->resource);
-        $this->createLines(isset($data['Lines']), $this->resource);
+        isset($data['Lines']) ? $this->createLines($data['Lines'], $this->resource) : '';
         return $this->service->update($this->context, $this->realm, $id, $this->resource);
     }
 
