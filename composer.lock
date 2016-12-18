@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5a74206bc1a24dd7226edde6bfc0ceab",
-    "content-hash": "ee36634875182309cf58b148aa3c1626",
+    "hash": "9560472a5850aff08bbeb3ef2171e8ea",
+    "content-hash": "829db169aa6fd3f795f8347eeecd02e4",
     "packages": [
         {
             "name": "consolibyte/quickbooks",
-            "version": "3.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/consolibyte/quickbooks-php.git",
-                "reference": "de4724a92dcd4381507776069839d5e44e286bc1"
+                "reference": "06041bdae92480aa202ea3d4350f12778db19281"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/consolibyte/quickbooks-php/zipball/de4724a92dcd4381507776069839d5e44e286bc1",
-                "reference": "de4724a92dcd4381507776069839d5e44e286bc1",
+                "url": "https://api.github.com/repos/consolibyte/quickbooks-php/zipball/06041bdae92480aa202ea3d4350f12778db19281",
+                "reference": "06041bdae92480aa202ea3d4350f12778db19281",
                 "shasum": ""
             },
             "require": {
@@ -56,13 +56,15 @@
                 "quickbooks web connector",
                 "web connector"
             ],
-            "time": "2015-11-09 18:54:25"
+            "time": "2016-12-14 18:33:20"
         }
     ],
     "packages-dev": [],
     "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "consolibyte/quickbooks": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

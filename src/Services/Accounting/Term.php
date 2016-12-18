@@ -21,7 +21,7 @@ class Term extends Quickbooks
         $this->service = new \QuickBooks_IPP_Service_Term();
         $this->resource = $this->find($id);
 
-        $this->handleNameListnData($data, $this->resource);
+        $this->handleNameListData($data, $this->resource);
         isset($data['Lines']) ? $this->createLines($data['Lines'], $this->resource) : '';
 
         return parent::_update($this->context, $this->realm, \QuickBooks_IPP_IDS::RESOURCE_TERM, $this->resource, $id) ?: $this->service->lastError();
