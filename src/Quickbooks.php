@@ -487,8 +487,8 @@ class Quickbooks extends \QuickBooks_IPP_Service
 
     /**
      * Creates Line data for each QuickBooks Resource. There are multiple types of lines in QuickBooks. There is a mehtod to handle each one since they all have unique data.
-     * @param  [array] $data [Line data]
-     * @param  [object] $obj  [The Current resource handling Line data.]
+     * @param  array of line data
+     * @param  /QuickBooks_Ipp_Object  [The Current resource handling Line data.]
      */
     protected function createLines($data, $obj)
     {
