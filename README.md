@@ -80,8 +80,18 @@ If you want to disconnect from quickbooks then you can do it like so.
 // routes/web.php
 use Myleshyson\LaravelQuickBooks\Facades\Connection;
 
-Route::get('/', function () {
+Route::get('/disconnect', function () {
   Connection::stop();
+});
+```
+If you want to check if your connected
+```php
+// routes/web.php
+use Myleshyson\LaravelQuickBooks\Facades\Connection;
+
+Route::get('/check-connection', function () {
+  dd(Connection::check());
+  //true
 });
 ```
 
