@@ -41,6 +41,8 @@ After that you should be set to go!
 ###Usage
 This package was made for working with the QuickBooks Accounting API in mind. You can look at all of the accounting resources here under 'Transaction' and 'Name list' resources. [QuickBooks Accounting API](https://developer.intuit.com/docs/api/accounting)
 
+####Note On Working With QuickBooks
+Just because in the QuickBooks documentation something says optional doesn't mean that you don't need it for your request. If your request doesn't go through make sure to dd() to see what error QuickBooks is giving back. It may be asking you to set something that is optional.
 There are a few resources that aren't supported by the QuickBooks SDK and those are listed here:
 * CompanyCurrency
 * Budget
@@ -50,10 +52,11 @@ There are a few resources that aren't supported by the QuickBooks SDK and those 
 * Deposit
 * Transfer
 
+####Connecting To QuickBooks
 To connect to quickbooks.
 
 ```php
-// web.php
+// routes/web.php
 use Myleshyson\LaravelQuickBooks\Facades\Customer;
 
 Route::get('/', function () {
@@ -63,7 +66,7 @@ Route::get('/', function () {
 
 If you want to disconnect from quickbooks then you can do it like so.
 ```php
-// web.php
+// routes/web.php
 use Myleshyson\LaravelQuickBooks\Facades\Customer;
 
 Route::get('/', function () {
@@ -71,11 +74,26 @@ Route::get('/', function () {
 });
 ```
 
+####Making Requests
+
+Every resource that's available has four methods except for TaxRate and TaxCode. Those only have a get and find method.
+
+```php
+Customer::create(array $data);
+
+Customer::update($id, array $data);
+
+Customer::delete($id);
+
+Customer::find($id);
+
+Customer::get(); //gets all customers associated with your account.
+```
 
 I used the same naming conventions as the QuickBooks API to make things easier. In order to create a resource like Customer for example, you would use it like this...
 
 ```php
-// web.php
+// routes/web.php
 
 use Myleshyson\LaravelQuickBooks\Facades\Customer;
 
@@ -97,7 +115,18 @@ Route::get('/', function () {
 ```
 *Make sure to import the Facade class*
 
-Most resources in the quickbooks api have lines that you can add to the object your building. For example an Invoice has line items and foreach line in the Invoice there could be sub line items and so forth. There are multiple lines types in quickbooks that are defined as the DetailType. For this package, set the DetailType as the key to the *Lines* multi-dimensional array and within it you can set both the Line data and the DetailType data. In order to create lines for the invoice it would look something like this.
+To handle any type of line in QuickBooks handle it like so. The key in the Lines array is the DetailType of the line. Check the documentation for what attributes you can set for the specific line you want.
+
+Here are the different line types in quickbooks
+
+* SalesItemLineDetail
+* ItemBasedExpenseLineDetail
+* AccountBasedExpenseLineDetail
+* GroupLineDetail
+* DescriptionOnly
+* DiscountLineDetail
+* SubtotalLine
+* TaxLineDetail
 
 ```php
 Invoice::create([
@@ -113,23 +142,17 @@ Invoice::create([
     'GroupLineDetail' => [
       '...etc'
     ]
+  ],
+  'TxnTaxDetail' => [
+    'TxnTaxCodeRef' => 8,
+    'Lines' => [
+      'TaxLineDetail' => [
+        'SomeStuff'
+      ],
+      'TaxLineDetail' => [
+        'MoreStuff'
+      ]
+    ]
   ]
 ])
 ```
-
-Every resource that's available has four methods except for TaxRate and TaxCode. Those only have a get and find method.
-
-```php
-Customer::create(array $data);
-
-Customer::update($id, array $data);
-
-Customer::delete($id);
-
-Customer::find($id);
-
-Customer::get(); //gets all customers associated with your account.
-```
-
-
-
