@@ -32,7 +32,7 @@ QB_OAUTH_URL=
 QB_SUCCESS_URL=
 QB_SANDBOX=true
 
-//These two you don't need to change unless you need to for some reason.
+//These two you shouldn't change unless you know what you're doing.
 QB_USERNAME=DO_NOT_CHANGE_ME
 QB_TENANT=12345
 ```
