@@ -15,10 +15,13 @@ class Connection extends Quickbooks
             die('Oh no, something went wrong with the Oauth handshake: ' . $this->IntuitAnywhere->errorNumber() . ': ' . $this->IntuitAnywhere->errorMessage());
         }
     }
-
     public function stop()
     {
         $this->IntuitAnywhere->disconnect($this->config['the_username'], $this->config['the_tenant'], true);
-        return redirect()->intended("/");
+    }
+
+    public function check()
+    {
+        return $this->IntuitAnywhere->check($this->config['the_username'], $this->config['the_tenant']);
     }
 }
