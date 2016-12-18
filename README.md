@@ -25,6 +25,9 @@ php artisan vendor:publish --tag=quickbooks
 These are the variables you need to set in your .env.
 
 ```
+//would looks something like this if using mysql
+QB_DSN=mysqli:db-username:db-password@db-connection/db-name
+
 QB_TOKEN=
 QB_OAUTH_CONSUMER_KEY=
 QB_OAUTH_CONSUMER_SECRET=

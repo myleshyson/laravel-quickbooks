@@ -3,7 +3,7 @@
 
 
 return [
-    'dsn' => env('DB_CONNECTION').'i://'.env('DB_USERNAME').':'.env('DB_PASSWORD').'@'.env('DB_HOST').'/'.env('DB_DATABASE'),
+    'dsn' => env('QB_DSN'),
     'encryption_key' => env('APP_KEY'),
     'sandbox' => env('QBO_SANDBOX'),
     'token' => env('QB_TOKEN'),
