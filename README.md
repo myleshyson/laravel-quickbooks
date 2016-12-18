@@ -6,9 +6,17 @@ If you haven't already composer the quickbooks php sdk. If you're using php 7+ t
 ```
 composer require consolibyte/quickbooks
 ```
-Then require this package.
+Then put this in your composer.json file. 
 ```
-composer require myleshyson/laravel-quickbooks
+{
+  "require": {
+    "myleshyson/laravel-quickbooks": "dev-master"
+  }
+}
+```
+And Run
+```
+composer install
 ```
 Add this line to you config/app.php.
 
