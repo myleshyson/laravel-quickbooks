@@ -539,7 +539,7 @@ class Quickbooks extends \QuickBooks_IPP_Service
     {
         isset($lnumber) ?  $line = $obj->getLine($lnumber) :  $line = new \QuickBooks_IPP_Object_Line();
 
-        $line->setAmount($data['Amount']);
+        isset($data['Amount']) ? $line->setAmount($data['Amount']) : '';
         $line->setDetailType('SalesItemLineDetail');
         isset($data['LineNum']) ? $line->setLineNum($data['LineNum']) : '';
         isset($data['Description']) ? $line->setDescription($data['Description']) : '';
@@ -569,7 +569,7 @@ class Quickbooks extends \QuickBooks_IPP_Service
     {
         isset($lnumber) ?  $line = $obj->getLine($lnumber) :  $line = new \QuickBooks_IPP_Object_Line();
 
-        $line->setAmount($data['Amount']);
+        isset($data['Amount']) ? $line->setAmount($data['Amount']) : '';
         $line->setDetailType('ItemBasedExpenseLineDetail');
         isset($data['LineNum']) ? $line->setLineNum($data['LineNum']) : '';
         isset($data['Description']) ? $line->setDescription($data['Description']) : '';
@@ -602,7 +602,7 @@ class Quickbooks extends \QuickBooks_IPP_Service
     {
         isset($lnumber) ?  $line = $obj->getLine($lnumber) :  $line = new \QuickBooks_IPP_Object_Line();
 
-        $line->setAmount($data['Amount']);
+        isset($data['Amount']) ? $line->setAmount($data['Amount']) : '';
         $line->setDetailType('AccountBasedExpenseLineDetail');
         isset($data['LineNum']) ? $line->setLineNum($data['LineNum']) : '';
         isset($data['Description']) ? $line->setDescription($data['Description']) : '';
@@ -652,7 +652,7 @@ class Quickbooks extends \QuickBooks_IPP_Service
         $account = new \QuickBooks_IPP_Object_DescriptionLineDetail();
         isset($lnumber) ?  $line = $obj->getLine(0) :  $line = new \QuickBooks_IPP_Object_Line();
         $line->setDetailType('DescriptionOnly');
-        $line->setAmount($data['Amount']);
+        isset($data['Amount']) ? $line->setAmount($data['Amount']) : '';
         isset($data['Description']) ? $line->setDescription($data['Description']) : '';
         isset($data['LineNum']) ? $line->setLineNum($data['LineNum']) : '';
 
@@ -667,7 +667,7 @@ class Quickbooks extends \QuickBooks_IPP_Service
     {
         isset($lnumber) ?  $line = $obj->getLine($lnumber) :  $line = new \QuickBooks_IPP_Object_Line();
         $line->setDetailType('DiscountLineDetail');
-        $line->setAmount($data['Amount']);
+        isset($data['Amount']) ? $line->setAmount($data['Amount']) : '';
         isset($data['Description']) ? $line->setDescription($data['Description']) : '';
         isset($data['LineNum']) ? $line->setLineNum($data['LineNum']) : '';
 
@@ -685,7 +685,7 @@ class Quickbooks extends \QuickBooks_IPP_Service
     {
         isset($lnumber) ?  $line = $obj->getLine($lnumber) :  $line = new \QuickBooks_IPP_Object_Line();
         $line->setDetailType('SubtotalLineDetail');
-        $line->setAmount($data['Amount']);
+        isset($data['Amount']) ? $line->setAmount($data['Amount']) : '';
         isset($data['Description']) ? $line->setDescription($data['Description']) : '';
         isset($data['LineNum']) ? $line->setLineNum($data['LineNum']) : '';
 
@@ -699,7 +699,7 @@ class Quickbooks extends \QuickBooks_IPP_Service
     {
         isset($lnumber) ?  $line = $obj->getLine($lnumber) :  $line = new \QuickBooks_IPP_Object_TaxLine();
         $line->setDetailType('TaxLineDetail');
-        $account->setTaxRateRef($data['TaxRateRef']);
+        isset($data['TaxRateRef']) ? $account->setTaxRateRef($data['TaxRateRef']) : '';
         isset($data['Amount']) ? $line->setAmount($data['Amount']) : '';
         isset($data['PercentBased']) ? $account->setPercentBased($data['PercentBased']) : '';
         isset($data['NetAmountTaxable']) ? $account->setNetAmountTaxable($data['NetAmountTaxable']) : '';
