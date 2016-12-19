@@ -6,9 +6,17 @@ If you haven't already composer the quickbooks php sdk. If you're using php 7+ t
 ```
 composer require consolibyte/quickbooks
 ```
-Then require this package.
+Then put this in your composer.json file. 
 ```
-composer require myleshyson/laravel-quickbooks
+{
+  "require": {
+    "myleshyson/laravel-quickbooks": "dev-master"
+  }
+}
+```
+And Run
+```
+composer install
 ```
 Add this line to you config/app.php.
 
@@ -25,17 +33,20 @@ php artisan vendor:publish --tag=quickbooks
 These are the variables you need to set in your .env.
 
 ```
-//would looks something like this if using mysql
-QB_DSN=mysqli:db-username:db-password@db-connection/db-name
 
+
+QB_DSN= e.g for mysql...mysqli:db-username:db-password@db-connection/db-name
 QB_TOKEN=
 QB_OAUTH_CONSUMER_KEY=
 QB_OAUTH_CONSUMER_SECRET=
-QB_OAUTH_URL=
-QB_SUCCESS_URL=
+
+Make sure tese two url's are different.
+QB_OAUTH_URL= url used to connect to quickbooks. 
+QB_SUCCESS_URL= you are redirected to here when the handshake is successful. 
+
 QB_SANDBOX=true
 
-//These two you shouldn't change unless you know what you're doing.
+These two you shouldn't change unless you know what you're doing.
 QB_USERNAME=DO_NOT_CHANGE_ME
 QB_TENANT=12345
 ```
@@ -46,7 +57,9 @@ This package was made for working with the QuickBooks Accounting API in mind. Yo
 
 ####Note On Working With QuickBooks
 Just because in the QuickBooks documentation something says optional doesn't mean that you don't need it for your request. If your request doesn't go through make sure to dd() to see what error QuickBooks is giving back. It may be asking you to set something that is optional.
+
 There are a few resources that aren't supported by the QuickBooks SDK and those are listed here:
+
 * CompanyCurrency
 * Budget
 * JournalCode
@@ -55,14 +68,17 @@ There are a few resources that aren't supported by the QuickBooks SDK and those 
 * Deposit
 * Transfer
 
+
+**Quick Note: Make sure when using this package you import the Facade class you want to use under Myleshyson\LaravelQuickBooks\Facades**
+
 ####Connecting To QuickBooks
-To connect to quickbooks.
+Make sure the success url is differnt than the oauth (connection) url. Otherwise it will continually redirect you after a succsful 
 
 ```php
 // routes/web.php
-use Myleshyson\LaravelQuickBooks\Facades\Customer;
+use Myleshyson\LaravelQuickBooks\Facades\Connection;
 
-Route::get('/', function () {
+Route::get('/connect', function () {
   Connection::start();
 });
 ```
@@ -70,10 +86,20 @@ Route::get('/', function () {
 If you want to disconnect from quickbooks then you can do it like so.
 ```php
 // routes/web.php
-use Myleshyson\LaravelQuickBooks\Facades\Customer;
+use Myleshyson\LaravelQuickBooks\Facades\Connection;
 
-Route::get('/', function () {
+Route::get('/disconnect', function () {
   Connection::stop();
+});
+```
+If you want to check if your connected
+```php
+// routes/web.php
+use Myleshyson\LaravelQuickBooks\Facades\Connection;
+
+Route::get('/check-connection', function () {
+  dd(Connection::check());
+  //true
 });
 ```
 
@@ -116,11 +142,10 @@ Route::get('/', function () {
     ]);
 });
 ```
-*Make sure to import the Facade class*
 
 To handle any type of line in QuickBooks handle it like so. The key in the Lines array is the DetailType of the line. Check the documentation for what attributes you can set for the specific line you want.
 
-Here are the different line types in quickbooks
+Here are the different line types in quickbooks:
 
 * SalesItemLineDetail
 * ItemBasedExpenseLineDetail
@@ -132,6 +157,8 @@ Here are the different line types in quickbooks
 * TaxLineDetail
 
 ```php
+use Myleshyson\LaravelQuickBooks\Facades\Invoice;
+
 Invoice::create([
   'CustomerRef' => 1,
   'Lines' => [
@@ -157,5 +184,5 @@ Invoice::create([
       ]
     ]
   ]
-])
+]);
 ```
