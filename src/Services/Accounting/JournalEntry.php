@@ -37,10 +37,10 @@ class JournalEntry extends Quickbooks implements QBResourceContract
     public function find($id)
     {
         $this->service = new \QuickBooks_IPP_Service_JournalEntry();
-        $query = $this->service->query($this->context, $this->realm, "SELECT * FROM JournalEntry WHERE Id = '$id' ")[0];
+        $query = $this->service->query($this->context, $this->realm, "SELECT * FROM JournalEntry WHERE Id = '$id' ");
 
-        if (isset($query)) {
-            return $query;
+        if (!empty($query)) {
+            return $query[0];
         }
         return 'Looks like this id does not exist.';
     }

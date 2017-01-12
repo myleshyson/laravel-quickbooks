@@ -37,12 +37,12 @@ class Invoice extends Quickbooks implements QBResourceContract
     public function find($id)
     {
         $this->service = new \QuickBooks_IPP_Service_Invoice();
-        $query = $this->service->query($this->context, $this->realm, "SELECT * FROM Account WHERE Id = '$id' ")[0];
+        $query = $this->service->query($this->context, $this->realm, "SELECT * FROM Account WHERE Id = '$id' ");
 
-        if (isset($query)) {
-            return $query;
+        if (!empty($query)) {
+            return $query[0];
         }
-        return 'Looks like this id does not exist';
+        return 'Looks like this id does not exist.';
     }
 
     public function get()

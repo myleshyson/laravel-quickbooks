@@ -37,9 +37,9 @@ class Employee extends Quickbooks implements QBResourceContract
     public function find($id)
     {
         $this->service = new \QuickBooks_IPP_Service_Employee();
-        $query = $this->service->query($this->context, $this->realm, "SELECT * FROM Employee WHERE Id = '$id' ")[0];
-        if (isset($query)) {
-            return $query;
+        $query = $this->service->query($this->context, $this->realm, "SELECT * FROM Employee WHERE Id = '$id' ");
+        if (!empty($query)) {
+            return $query[0];
         }
         return 'Looks like this id does not exist.';
     }
