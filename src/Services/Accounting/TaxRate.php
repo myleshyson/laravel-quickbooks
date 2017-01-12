@@ -9,7 +9,11 @@ class TaxRate extends Quickbooks
     public function find($id)
     {
         $this->service = new \QuickBooks_Ipp_Service_TaxRate();
-        return $this->service->query($this->context, $this->realm, "SELECT * FROM TaxRate WHERE Id = '$id' ")[0] ?: $this->service->lastError();
+        $query = $this->service->query($this->context, $this->realm, "SELECT * FROM TaxRate WHERE Id = '$id' ")[0];
+        if (isset($query)) {
+            return $query;
+        }
+        return 'Looks like this id does not exist.';
     }
 
     public function get()

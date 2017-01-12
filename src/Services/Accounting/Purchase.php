@@ -2,9 +2,10 @@
 
 namespace Myleshyson\LaravelQuickBooks\Services\Accounting;
 
+use Myleshyson\LaravelQuickBooks\Contracts\QBResourceContract;
 use Myleshyson\LaravelQuickBooks\Quickbooks;
 
-class Purchase extends Quickbooks
+class Purchase extends Quickbooks implements QBResourceContract
 {
     public function create(array $data)
     {
@@ -36,7 +37,12 @@ class Purchase extends Quickbooks
     public function find($id)
     {
         $this->service = new \QuickBooks_IPP_Service_Purchase();
-        return $this->service->query($this->context, $this->realm, "SELECT * FROM Purchase WHERE Id = '$id' ")[0];
+        $query = $this->service->query($this->context, $this->realm, "SELECT * FROM Purchase WHERE Id = '$id' ")[0];
+
+        if (isset($query)) {
+            return $query;
+        }
+        return 'Looks like this id does not exist';
     }
 
     public function get()
