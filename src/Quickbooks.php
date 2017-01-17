@@ -402,12 +402,15 @@ class Quickbooks extends \QuickBooks_IPP_Service
         }
 
         if (isset($data['CustomField'])) {
-            $customField = new \QuickBooks_IPP_Object_CustomField();
-            isset($data['CustomField']['Id']) ? $customField->setDefinitionId($data['CustomField']['Id']) : '';
-            isset($data['CustomField']['Name']) ? $customField->setDefinitionName($data['CustomField']['Name']) : '';
-            isset($data['CustomField']['Type']) ? $customField->setDefinitionType($data['CustomField']['Type']) : '';
-            isset($data['CustomField']['StringValue']) ? $customField->setDefinitionStringValue($data['CustomField']['StringValue']) : '';
-            $obj->setCustomField($customField);
+            if (isset($data['CustomField'][0])) {
+                foreach ($data['CustomField'] as $field) {
+                    $customField = new \QuickBooks_IPP_Object_CustomField();
+                    $obj->addCustomField($this->generateCustomField($field, $customField));
+                }
+            } else {
+                $customField = new \QuickBooks_IPP_Object_CustomField();
+                $obj->addCustomField($this->generateCustomField($data['CustomField'], $customField));
+            }
         }
 
         if (isset($data['LinkedTxn'])) {
@@ -708,5 +711,14 @@ class Quickbooks extends \QuickBooks_IPP_Service
         isset($data['TaxPercent']) ? $account->setTaxPercent($data['TaxPercent']) : '';
         $line->setTaxLineDetail($account);
         isset($lnumber) ? '' : $obj->addLine($line);
+    }
+
+    private function generateCustomField($fieldInput, $fieldObj)
+    {
+        isset($fieldInput['DefinitionId']) ? $fieldObj->setDefinitionId($fieldInput['DefinitionId']) : '';
+        isset($fieldInput['Name']) ? $fieldObj->setName($fieldInput['Name']) : '';
+        isset($fieldInput['Type']) ? $fieldObj->setType($fieldInput['Type']) : '';
+        isset($fieldInput['StringValue']) ? $fieldObj->setStringValue($fieldInput['StringValue']) : '';
+        return $fieldObj;
     }
 }
