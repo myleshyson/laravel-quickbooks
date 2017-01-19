@@ -496,16 +496,18 @@ class Quickbooks extends \QuickBooks_IPP_Service
     protected function createLines($data, $obj)
     {
         if ($data) {
-            foreach ($data as $key => $value) {
+            foreach ($data as $value) {
                 $line = new \QuickBooks_IPP_Object_Line();
+                $type = $value['DetailType'];
+
                 isset($value['LineNumber']) ? $lnumber = $value['LineNumber'] - 1 : $lnumber = null;
 
-                if ($key != 'DescriptionOnly') {
-                    $accountType = '\\QuickBooks_IPP_Object_'.$key;
+                if ($type != 'DescriptionOnly') {
+                    $accountType = '\\QuickBooks_IPP_Object_'.$type;
                     $account = new $accountType();
                 }
 
-                switch ($key) {
+                switch ($type) {
                 case 'SalesItemLineDetail':
                     $this->handleSalesItemLineDetail($account, $value, $lnumber, $obj);
                     break;
