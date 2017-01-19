@@ -135,7 +135,7 @@ Route::get('/', function () {
 });
 ```
 
-To handle any type of line in QuickBooks handle it like so. The key in the Lines array is the DetailType of the line. Check the documentation for what attributes you can set for the specific line you want.
+To handle any type of line in QuickBooks handle it like so.
 
 Here are the different line types in quickbooks:
 
@@ -154,27 +154,26 @@ use Myleshyson\LaravelQuickBooks\Facades\Invoice;
 Invoice::create([
   'CustomerRef' => 1,
   'Lines' => [
-    'SalesItemLineDetail' => [
+    [
+      'DetailType' => 'SalesItemLineDetail',
       'ItemRef' => 1,
       'Amount' => 20,
       'MarkupInfo' => [
         'PercentBased' => true
       ]
     ],
-    'GroupLineDetail' => [
-      '...etc'
-    ]
-  ],
-  'TxnTaxDetail' => [
-    'TxnTaxCodeRef' => 8,
-    'Lines' => [
-      'TaxLineDetail' => [
-        'SomeStuff'
-      ],
-      'TaxLineDetail' => [
-        'MoreStuff'
+    [
+      'DetailType' => 'TxnTaxDetail',
+      'TxnTaxCodeRef' => 8,
+      'Lines' => [
+        [
+          'SomeStuff'
+        ],
+        [
+          'MoreStuff'
+        ]
       ]
     ]
-  ]
+   ]
 ]);
 ```
