@@ -415,7 +415,7 @@ class Quickbooks extends \QuickBooks_IPP_Service
 
         if (isset($data['LinkedTxn'])) {
             foreach ($data['LinkedTxn'] as $key => $value) {
-                $LinkedTxn = new \Quickbooks_IPP_Object_LinkedTxn();
+                $LinkedTxn = new \QuickBooks_IPP_Object_LinkedTxn();
                 isset($value['TxnId']) ? $LinkedTxn->setTxnId($value['TxnId']) : '';
                 isset($value['TxnType']) ? $LinkedTxn->setTxnType($value['TxnType']) : '';
                 isset($value['TxnLineId']) ? $LinkedTxn->setTxnLineId($value['TxnLineId']) : '';
