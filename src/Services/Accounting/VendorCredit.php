@@ -49,4 +49,11 @@ class VendorCredit extends Quickbooks implements QBResourceContract
         $this->service = new \QuickBooks_IPP_Service_VendorCredit();
         return $this->service->query($this->context, $this->realm, "SELECT * FROM VendorCredit");
     }
+
+    public function query($query)
+    {
+         $this->service = new \QuickBooks_IPP_Service_VendorCredit();
+
+         return $this->service->query($this->context, $this->realm, $query);
+    }
 }

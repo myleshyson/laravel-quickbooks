@@ -49,4 +49,11 @@ class Department extends Quickbooks implements QBResourceContract
         $this->service = new \QuickBooks_IPP_Service_Department();
         return $this->service->query($this->context, $this->realm, "SELECT * FROM Department");
     }
+
+    public function query($query)
+    {
+         $this->service = new \QuickBooks_IPP_Service_Department();
+
+         return $this->service->query($this->context, $this->realm, $query);
+    }
 }

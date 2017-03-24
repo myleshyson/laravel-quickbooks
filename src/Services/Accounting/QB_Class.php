@@ -49,4 +49,11 @@ class QB_Class extends Quickbooks implements QBResourceContract
         $this->service = new \QuickBooks_IPP_Service_Class();
         return $this->service->query($this->context, $this->realm, "SELECT * FROM Class");
     }
+
+    public function query($query)
+    {
+         $this->service = new \QuickBooks_IPP_Service_Class();
+
+         return $this->service->query($this->context, $this->realm, $query);
+    }
 }

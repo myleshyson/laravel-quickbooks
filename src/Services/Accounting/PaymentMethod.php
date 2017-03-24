@@ -49,4 +49,11 @@ class PaymentMethod extends Quickbooks implements QBResourceContract
         $this->service = new \QuickBooks_IPP_Service_PaymentMethod();
         return $this->service->query($this->context, $this->realm, "SELECT * FROM PaymentMethod");
     }
+
+    public function query($query)
+    {
+         $this->service = new \QuickBooks_IPP_Service_PaymentMethod();
+
+         return $this->service->query($this->context, $this->realm, $query);
+    }
 }

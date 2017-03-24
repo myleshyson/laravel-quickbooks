@@ -49,4 +49,11 @@ class RefundReceipt extends Quickbooks implements QBResourceContract
         $this->service = new \QuickBooks_IPP_Service_RefundReceipt();
         return $this->service->query($this->context, $this->realm, "SELECT * FROM RefundReceipt");
     }
+
+    public function query($query)
+    {
+         $this->service = new \QuickBooks_IPP_Service_RefundReceipt();
+
+         return $this->service->query($this->context, $this->realm, $query);
+    }
 }

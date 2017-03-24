@@ -62,4 +62,11 @@ class Invoice extends Quickbooks implements QBResourceContract
         $this->service = new \QuickBooks_IPP_Service_Invoice();
         return $this->service->query($this->context, $this->realm, "SELECT * FROM Account");
     }
+
+    public function query($query)
+    {
+         $this->service = new \QuickBooks_IPP_Service_Invoice();
+
+         return $this->service->query($this->context, $this->realm, $query);
+    }
 }

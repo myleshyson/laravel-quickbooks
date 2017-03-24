@@ -49,4 +49,11 @@ class Estimate extends Quickbooks implements QBResourceContract
         $this->service = new \QuickBooks_IPP_Service_Estimate();
         return $this->service->query($this->context, $this->realm, "SELECT * FROM Estimate");
     }
+
+    public function query($query)
+    {
+         $this->service = new \QuickBooks_IPP_Service_Estimate();
+
+         return $this->service->query($this->context, $this->realm, $query);
+    }
 }

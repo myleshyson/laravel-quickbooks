@@ -48,4 +48,11 @@ class Item extends Quickbooks implements QBResourceContract
         $this->service = new \QuickBooks_IPP_Service_Item();
         return $this->service->query($this->context, $this->realm, "SELECT * FROM Item");
     }
+
+    public function query($query)
+    {
+         $this->service = new \QuickBooks_IPP_Service_Item();
+
+         return $this->service->query($this->context, $this->realm, $query);
+    }
 }
