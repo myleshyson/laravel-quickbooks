@@ -49,4 +49,11 @@ class Employee extends Quickbooks implements QBResourceContract
         $this->service = new \QuickBooks_IPP_Service_Employee();
         return $this->service->query($this->context, $this->realm, "SELECT * FROM Employee");
     }
+
+    public function query($query)
+    {
+         $this->service = new \QuickBooks_IPP_Service_Employee();
+
+         return $this->service->query($this->context, $this->realm, $query);
+    }
 }

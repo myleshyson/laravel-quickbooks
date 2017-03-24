@@ -50,4 +50,11 @@ class Purchase extends Quickbooks implements QBResourceContract
         $this->service = new \QuickBooks_IPP_Service_Purchase();
         return $this->service->query($this->context, $this->realm, "SELECT * FROM Purchase");
     }
+
+    public function query($query)
+    {
+         $this->service = new \QuickBooks_IPP_Service_Purchase();
+
+         return $this->service->query($this->context, $this->realm, $query);
+    }
 }

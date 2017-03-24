@@ -21,4 +21,11 @@ class TaxCode extends Quickbooks
         $this->service = new \QuickBooks_Ipp_Service_TaxCode();
         return $this->service->query($this->context, $this->realm, "SELECT * FROM TaxCode") ?: $this->service->lastError();
     }
+
+    public function query($query)
+    {
+         $this->service = new \QuickBooks_Ipp_Service_TaxCode();
+
+         return $this->service->query($this->context, $this->realm, $query);
+    }
 }

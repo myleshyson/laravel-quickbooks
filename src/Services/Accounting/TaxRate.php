@@ -21,4 +21,11 @@ class TaxRate extends Quickbooks
         $this->service = new \QuickBooks_Ipp_Service_TaxRate();
         return $this->service->query($this->context, $this->realm, "SELECT * FROM TaxRate") ?: $this->service->lastError();
     }
+
+    public function query($query)
+    {
+         $this->service = new \QuickBooks_Ipp_Service_TaxRate();
+
+         return $this->service->query($this->context, $this->realm, $query);
+    }
 }

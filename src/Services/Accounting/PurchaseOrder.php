@@ -49,4 +49,11 @@ class PurchaseOrder extends Quickbooks implements QBResourceContract
         $this->service = new \QuickBooks_IPP_Service_PurchaseOrder();
         return $this->service->query($this->context, $this->realm, "SELECT * FROM PurchaseOrder");
     }
+
+    public function query($query)
+    {
+         $this->service = new \QuickBooks_IPP_Service_PurchaseOrder();
+
+         return $this->service->query($this->context, $this->realm, $query);
+    }
 }

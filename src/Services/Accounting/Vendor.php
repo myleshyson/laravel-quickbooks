@@ -49,4 +49,11 @@ class Vendor extends Quickbooks implements QBResourceContract
         $this->service = new \QuickBooks_IPP_Service_Vendor();
         return $this->service->query($this->context, $this->realm, "SELECT * FROM Vendor");
     }
+
+    public function query($query)
+    {
+         $this->service = new \QuickBooks_IPP_Service_Vendor();
+
+         return $this->service->query($this->context, $this->realm, $query);
+    }
 }
