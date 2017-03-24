@@ -1,7 +1,7 @@
 # laravel-quickbooks
 ## A nice wrapper around the Quickbooks Online SDK.
 
-###Installation
+### Installation
 If you haven't already composer the quickbooks php sdk. If you're using php 7+ then you'll need to require the dev-master version.
 ```
 composer require consolibyte/quickbooks
@@ -44,10 +44,10 @@ QB_TENANT=12345
 ```
 After that you should be set to go!
 
-###Usage
+### Usage
 This package was made for working with the QuickBooks Accounting API in mind. You can look at all of the accounting resources here under 'Transaction' and 'Name list' resources. [QuickBooks Accounting API](https://developer.intuit.com/docs/api/accounting)
 
-####Note On Working With QuickBooks
+#### Note On Working With QuickBooks
 Just because in the QuickBooks documentation something says optional doesn't mean that you don't need it for your request. If your request doesn't go through make sure to dd() to see what error QuickBooks is giving back. It may be asking you to set something that is optional.
 
 There are a few resources that aren't supported by the QuickBooks SDK and those are listed here:
@@ -63,7 +63,7 @@ There are a few resources that aren't supported by the QuickBooks SDK and those 
 
 **Quick Note: Make sure when using this package you import the Facade class you want to use under Myleshyson\LaravelQuickBooks\Facades**
 
-####Connecting To QuickBooks
+#### Connecting To QuickBooks
 Make sure the success url is differnt than the oauth (connection) url. Otherwise it will continually redirect you after a succsful 
 
 ```php
@@ -95,9 +95,9 @@ Route::get('/check-connection', function () {
 });
 ```
 
-####Making Requests
+#### Making Requests
 
-Every resource that's available has four methods except for TaxRate and TaxCode. Those only have a get and find method.
+Every resource that's available has four methods except for TaxRate and TaxCode. Those only have a get, find, and query method.
 
 ```php
 Customer::create(array $data);
@@ -109,6 +109,8 @@ Customer::delete($id);
 Customer::find($id);
 
 Customer::get(); //gets all customers associated with your account.
+
+Customer::query('SELECT * FROM CUSTOMER WHERE ...') //put in your own custom query for the Customer table. 
 ```
 
 I used the same naming conventions as the QuickBooks API to make things easier. In order to create a resource like Customer for example, you would use it like this...
