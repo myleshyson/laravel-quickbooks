@@ -11,8 +11,8 @@ class CreditMemo extends Quickbooks implements QBResourceContract
     {
         $this->service = new \QuickBooks_IPP_Service_CreditMemo();
         $this->resource = new \QuickBooks_IPP_Object_CreditMemo();
-        $this->handleTransactionData($data, $this->CreditMemo);
-        $this->createLines($data['Lines'], $this->CreditMemo);
+        $this->handleTransactionData($data, $this->resource);
+        $this->createLines($data['Lines'], $this->resource);
 
         return $this->service->add($this->context, $this->realm, $this->resource) ?: $this->service->lastError();
     }
