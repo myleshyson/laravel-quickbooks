@@ -27,7 +27,7 @@ These are the variables you need to set in your .env.
 ```
 
 
-QB_DSN= e.g for mysql...mysqli:db-username:db-password@db-connection/db-name
+QB_DSN= e.g for mysql...mysqli://db-username:db-password@db-connection/db-name
 QB_TOKEN=
 QB_OAUTH_CONSUMER_KEY=
 QB_OAUTH_CONSUMER_SECRET=
