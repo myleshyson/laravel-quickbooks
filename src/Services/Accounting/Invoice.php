@@ -22,7 +22,7 @@ class Invoice extends Quickbooks implements QBResourceContract
         $this->service = new \QuickBooks_IPP_Service_Invoice();
         $this->resource = $this->find($id);
 
-        $this->handleTransactionnData($data, $this->resource);
+        $this->handleTransactionData($data, $this->resource);
         isset($data['Lines']) ? $this->createLines($data['Lines'], $this->resource) : '';
 
         return $this->service->update($this->context, $this->realm, $id, $this->resource) ?: $this->service->lastError();
