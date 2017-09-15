@@ -1,3 +1,6 @@
+# No Longer Maintained
+For two reasons. I don't have the time anymore to work on this (it was only a hobby project) and a few months ago QuicBooks actually came out with it's own PHP SDK [you can see it here](https://github.com/intuit/QuickBooks-V3-PHP-SDK). Though this package should work fine still (as of 09/15/2017) QuickBooks is going to have a much more consistent and higher quality package to work with their own system. It's also documented way better than this or Consolibyte. For those that have used it I hope it's been helpful! If you would like to take over this repo and convert it to use the QuickBooks SDK or something just let me know. 
+
 # laravel-quickbooks
 ## A nice wrapper around the Quickbooks Online SDK.
 
